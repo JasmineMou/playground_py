@@ -129,7 +129,17 @@ mutually_exclusive()
 # usage: argparser_output.py [-h] [-v | -q] x y
 # argparser_output.py: error: argument -q/--quiet: not allowed with argument -v/--verbose	
 
-
+def get_customized_path():
+	parser = argparse.ArgumentParser()
+	parser.add_argument("--train", help="training data path")
+	parser.add_argument("--test", help="test data path")
+	parser.add_argument("--prediction-results", help="prediction data path")
+	paths = parser.parse_args()
+	return paths
+paths = get_customized_path()
+print(paths.train, paths.test, paths.prediction_results)
+# > python test.py --train path_of_training_data.txt --prediction path_of_output_data.txt --test path_of_test_data.txt
+# path_of_training_data.txt path_of_output_data.txt path_of_test_data.txt
 
 
 
