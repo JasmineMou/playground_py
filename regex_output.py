@@ -66,6 +66,82 @@ print(r40)
 print(r41)
 
 
+## the string start with exactly 2 vowels
+def contains_two_vow(s):
+	#### Method 1: break into 3 steps
+	## first two elements are vowels
+	p1 = "[aeiou]{2}.*"
+	prog1 = re.compile(p1)
+
+	## third element is a nonvowel
+	p2 = ".{2}[^aeiou]+"
+	prog2 = re.compile(p2)
+
+	## third element is empty
+	p3 = ".{2}$"
+	prog3 = re.compile(p3)
+
+	# result = True if prog1.match(s) else False
+	# result = True if prog2.match(s) else False
+	# result = True if prog3.match(s) else False
+
+	## first two elements are vowels and 3rd element is either a nonvowel, or empty
+	# if(prog1.match(s) and (prog2.match(s) or prog3.match(s))):
+	# 	result = True
+	# else:
+	# 	result = False
+
+	#### Method 2: combine them into one pattern 
+	p = "[aeiou]{2}([^aeiou]+|$)"
+	prog = re.compile(p)
+
+	result = True if prog.match(s) else False
+
+	return result
+#### test cases
+## correct
+s1 = "aerrr"
+s2 = "aerer" 
+s3 = "ae"
+
+## incorrect
+s4 = "aeere" 
+s5 = "raere"
+s6 = "rarre"
+
+## test p1: first two are vowels
+# print(contains_two_vow(s1)==True)
+# print(contains_two_vow(s2)==True)
+# print(contains_two_vow(s3)==True)
+# print(contains_two_vow(s4)==True)
+# print(contains_two_vow(s5)==False)
+# print(contains_two_vow(s6)==False)
+
+## test p2: third element either empty or nonvowel
+# print(contains_two_vow(s1)==True)
+# print(contains_two_vow(s2)==True)
+# print(contains_two_vow(s3)==True)
+# print(contains_two_vow(s4)==False)
+# print(contains_two_vow(s5)==False)
+# print(contains_two_vow(s6)==True)
+
+## test p3: only two letters being vowels
+# print(contains_two_vow(s1)==False)
+# print(contains_two_vow(s2)==False)
+# print(contains_two_vow(s3)==True)
+# print(contains_two_vow(s4)==False)
+# print(contains_two_vow(s5)==False)
+# print(contains_two_vow(s6)==False)
+
+
+## test goal
+print(contains_two_vow(s1)==True)
+print(contains_two_vow(s2)==True)
+print(contains_two_vow(s3)==True)
+print(contains_two_vow(s4)==False)
+print(contains_two_vow(s5)==False)
+print(contains_two_vow(s6)==False)
+
 ############ old notes ############  
 # Regular expression summary
 
