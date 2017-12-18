@@ -245,6 +245,9 @@ def df_transform():
 	#             new_col0  new_col1  new_col2  new_col3
 	# new_index0         0        18        10         5
 	# new_index1        -1        24        13         3
+	
+	# lambda function with apply() to multiple columns
+	# df['new_index2'] = df.apply(lambda row: func_defined(row['index0'], row['index1']), axis=1)
 
 	# lambda funciton with applymap(), which applies lambda function element-wise
 	df = df.applymap(doubler)
